@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPK Recycling - Libro Digital</title>
+    <link rel="preload" href="https://drive.google.com/thumbnail?id=1G21s50oq2iq0MWIGxZjlR_bCo2xW0CVu&amp;sz=w6631" as="image" fetchpriority="high">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="reader" aria-label="Libro digital">
+        <div class="toolbar">
+          <button class="icon-button" type="button" data-action="prev" aria-label="P&aacute;gina anterior" title="P&aacute;gina anterior">
+            <span aria-hidden="true">&lsaquo;</span>
+          </button>
+
+          <div class="page-status" aria-live="polite">
+            <strong id="pageLabel">Portada</strong>
+            <span id="pageCounter">1 / 32</span>
+          </div>
+
+          <button class="icon-button" type="button" data-action="next" aria-label="P&aacute;gina siguiente" title="P&aacute;gina siguiente">
+            <span aria-hidden="true">&rsaquo;</span>
+          </button>
+        </div>
+
+        <div class="stage">
+          <div class="book-shell">
+            <div id="book" class="book" aria-label="Libro con animaci&oacute;n de hojas"></div>
+          </div>
+        </div>
+
+        <div class="bottom-controls">
+          <input id="pageRange" type="range" min="0" max="16" value="0" aria-label="Ir a una p&aacute;gina">
+          <button class="text-button" type="button" data-action="first">Portada</button>
+          <button class="text-button" type="button" data-action="last">Contraportada</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
