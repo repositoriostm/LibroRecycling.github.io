@@ -37,6 +37,7 @@ const driveImageIds = [
 ];
 const imageFiles = driveImageIds.map(id => `https://drive.google.com/thumbnail?id=${id}&sz=w6631`);
 
+const stage = document.querySelector(".stage");
 const book = document.querySelector("#book");
 const pageLabel = document.querySelector("#pageLabel");
 const pageCounter = document.querySelector("#pageCounter");
@@ -49,6 +50,7 @@ const lastButton = document.querySelector('[data-action="last"]');
 let currentSheet = 0;
 let isAnimating = false;
 const sheets = [];
+let centerScrollFrame = 0;
 
 function clampSheet(sheetIndex) {
   return Math.max(0, Math.min(sheetsCount, sheetIndex));
@@ -204,6 +206,14 @@ function updateControls() {
   book.classList.toggle("is-animating", isAnimating);
 }
 
+function centerBookViewport() {
+  if (!stage || stage.scrollWidth <= stage.clientWidth) return;
+  window.cancelAnimationFrame(centerScrollFrame);
+  centerScrollFrame = window.requestAnimationFrame(() => {
+    stage.scrollLeft = (stage.scrollWidth - stage.clientWidth) / 2;
+  });
+}
+
 function waitForSheet(sheet) {
   return new Promise(resolve => {
     let resolved = false;
@@ -268,3 +278,5 @@ preloadPagesAround(0);
 updateSheetLayers();
 updateControls();
 markBookReady();
+centerBookViewport();
+window.addEventListener("resize", centerBookViewport);
